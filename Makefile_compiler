@@ -55,7 +55,7 @@ else
 #NV
 
 90C ?= nvfortran
-F90COMMONFLAGS ?= -cpp -MMD -fopenmp -fPIC
+F90COMMONFLAGS ?= -cpp -Minform=warn -Mextend
 F90DEBUGFLAGS ?= -g -O0 -fbacktrace
 F90RELEASEFLAGS ?= -O3 
 MODLINK=-J
