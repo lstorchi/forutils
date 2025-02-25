@@ -57,7 +57,7 @@ else
 90C ?= nvfortran
 F90COMMONFLAGS ?= -cpp -Minform=warn -Mextend
 F90DEBUGFLAGS ?= -g -O0 -fbacktrace
-F90RELEASEFLAGS ?= -O3 
+F90RELEASEFLAGS ?= -O0 -g
 MODLINK=-J
 
 #gfortran
