@@ -51,18 +51,28 @@ endif
 endif
 
 else
+#NV
 
-major_version = $(shell gfortran -dumpversion 2>&1 | cut -d " " -f 3 | cut -d. -f 1)
-ifneq ($(shell test $(major_version) -gt 5; echo $$?),0)
-$(error gfortran version 6.3 or higher (or ifort 14+) is required)
-endif
-compiler_ver = $(shell gfortran -dumpversion 2>&1)
 
-F90C ?= gfortran
-F90COMMONFLAGS ?= -cpp -ffree-line-length-none -fmax-errors=4 -MMD -fopenmp -fPIC
-F90DEBUGFLAGS ?= -g -O0 -fbacktrace
-F90RELEASEFLAGS ?= -O3 -ffast-math
-MODLINK=-J
+f90c ?= nvfortran
+f90commonflags ?= -cpp  -mmd -fpic
+f90debugflags ?= -g -o0 -fbacktrace
+f90releaseflags ?= -o3 
+modlink=-j
+
+# gfortran
+
+#major_version = $(shell gfortran -dumpversion 2>&1 | cut -d " " -f 3 | cut -d. -f 1)
+#ifneq ($(shell test $(major_version) -gt 5; echo $$?),0)
+#$(error gfortran version 6.3 or higher (or ifort 14+) is required)
+#endif
+#compiler_ver = $(shell gfortran -dumpversion 2>&1)
+
+#f90c ?= gfortran
+#f90commonflags ?= -cpp -ffree-line-length-none -fmax-errors=4 -mmd -fopenmp -fpic
+#f90debugflags ?= -g -o0 -fbacktrace
+#f90releaseflags ?= -o3 -ffast-math
+#modlink=-j
 
 endif
 
