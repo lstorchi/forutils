@@ -138,12 +138,12 @@
     function TimerTime()
     real(TTimer_dp) time
     real(TTimer_dp) :: TimerTime
-    !$ real(TTimer_dp), external :: omp_get_wtime
+    ! real(TTimer_dp), external :: omp_get_wtime
 #ifdef MPI
     TimerTime = MPI_WTime()
 #else
     time = 0
-    !$ time = OMP_GET_WTIME()
+    !time = OMP_GET_WTIME()
     if (time==0) call cpu_time(time)
     TimerTime=  time
 #endif
