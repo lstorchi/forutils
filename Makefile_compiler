@@ -54,11 +54,11 @@ else
 
 #NV
 
-90C ?= nvfortran
-F90COMMONFLAGS ?= -cpp -Minform=warn -Mextend
-F90DEBUGFLAGS ?= -g -O0 -fbacktrace
-F90RELEASEFLAGS ?= -O0 -g
-MODLINK=-J
+#90C ?= nvfortran
+#F90COMMONFLAGS ?= -cpp -Minform=warn -Mextend
+#F90DEBUGFLAGS ?= -g -O0 -fbacktrace
+#F90RELEASEFLAGS ?= -O0 -g
+#MODLINK=-J
 
 #gfortran
 
@@ -68,11 +68,11 @@ $(error gfortran version 6.3 or higher (or ifort 14+) is required)
 endif
 compiler_ver = $(shell gfortran -dumpversion 2>&1)
 
-#F90C ?= gfortran
-#F90COMMONFLAGS ?= -cpp -ffree-line-length-none -fmax-errors=4 -MMD -fopenmp -fPIC
-#F90DEBUGFLAGS ?= -g -O0 -fbacktrace
-#F90RELEASEFLAGS ?= -O3 -ffast-math
-#MODLINK=-J
+F90C ?= gfortran
+F90COMMONFLAGS ?= -cpp -ffree-line-length-none -fmax-errors=4 -MMD -fopenmp -fPIC
+F90DEBUGFLAGS ?= -g -O0 -fbacktrace
+F90RELEASEFLAGS ?= -O3 -ffast-math
+MODLINK=-J
 
 endif
 
