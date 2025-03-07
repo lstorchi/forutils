@@ -56,9 +56,15 @@ else
 
   ifeq ($(NVCOMP),yes)
     F90C ?= nvfortran
-    F90COMMONFLAGS ?= -cpp -Minform=warn -Mextend
-    F90DEBUGFLAGS ?= -g -O0 -fbacktrace
-    F90RELEASEFLAGS ?= -O0 -g
+	ifeq "$(OPENACC)" "yes"
+      F90COMMONFLAGS ?= -DUSEACC -cpp -Mextend -acc=gpu -gpu=cc61,cuda12.1 -Minfo=accel -cuda
+	  F90DEBUGFLAGS ?= -g -O0 -fbacktrace
+	  F90RELEASEFLAGS ?= -O0 -g
+    else
+      F90COMMONFLAGS ?= -cpp -Mextend -Minform=warn -Mextend
+	  F90DEBUGFLAGS ?= -g -O0 -fbacktrace
+	  F90RELEASEFLAGS ?= -O0 -g
+    endif
     MODLINK=-J
   else
     #gfortran
