@@ -60,12 +60,22 @@ else
     #      # ls /opt/nvidia/hpc_sdk/Linux_x86_64/25.1/cuda/ to see cuda version
     ifeq "$(OPENACC)" "yes"
        F90COMMONFLAGS ?= -DUSEACC -cpp -Mextend -acc=gpu -gpu=cc75,cuda12.6 -Minfo=accel -cuda
-       F90DEBUGFLAGS ?= -g -O0 -fbacktrace
-       F90RELEASEFLAGS ?= -O0 -g
+       ifeq "$(ACTIVEDEBUGFLAGS)" "yes"
+         F90DEBUGFLAGS ?= -g -O0 -fbacktrace
+         F90RELEASEFLAGS ?= -O0 -g
+       else
+	 F90DEBUGFLAGS ?= -O3
+	 F90RELEASEFLAGS ?= -O3
+       endif
     else
        F90COMMONFLAGS ?= -cpp -Mextend -Minform=warn -Mextend
-       F90DEBUGFLAGS ?= -g -O0 -fbacktrace
-       F90RELEASEFLAGS ?= -O0 -g
+       ifeq "$(ACTIVEDEBUGFLAGS)" "yes"
+         F90DEBUGFLAGS ?= -g -O0 -fbacktrace
+         F90RELEASEFLAGS ?= -O0 -g
+       else
+	 F90DEBUGFLAGS ?= -O3
+	 F90RELEASEFLAGS ?= -O3
+       endif
     endif
     MODLINK=-J
   else
