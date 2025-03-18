@@ -538,7 +538,6 @@
     character(LEN=:), pointer :: AValue
 
     AValue => this%ValueOf(Key)
-
     if (AValue/='') then
         call  this%ReadValues%Add(Key, AValue)
         if (this%Echo_Read) write (*,*) trim(Key)//' = ',trim(AValue)
@@ -651,16 +650,18 @@
         Ini_Read_Int = Default
         call  this%ReadValues%Add(Key, Default)
     else
-        if (verify(trim(S),'-+0123456789') /= 0) then
-            status=1
-            if (present(OK)) then
-                Ini_Read_Int=-1
-                OK = .false.
-                return
-            end if
-        else
+        ! NVCOMP verirify returns something different respect to GNU
+        !print*, "Ini_Read_Int ", trim(S), verify(trim(S),'-+0123456789')
+        !if (verify(trim(S),'-+0123456789') /= 0) then
+        !    status=1
+        !    if (present(OK)) then
+        !        Ini_Read_Int=-1
+        !        OK = .false.
+        !        return
+        !    end if
+        !else
             read (S,*, iostat=status) Ini_Read_Int
-        end if
+        !end if
         if (status/=0) call this%Error('error reading integer',Key)
         if (present(max)) then
             if (Ini_Read_Int > max) call this%Error('value > max',Key)
@@ -857,11 +858,12 @@
         Ini_Read_Logical = Default
         call  this%ReadValues%Add(Key, Default)
     else
-        if (verify(trim(S),'10TF') /= 0) then
-            status=1
-        else
+        ! NVCOMP verirify returns something different respect to GNU
+        !if (verify(trim(S),'10TF') /= 0) then
+        !    status=1
+        !else
             read (S,*, iostat=status) Ini_Read_Logical
-        end if
+        !end if
         if (status/=0) call this%Error('error reading logical',Key)
     end if
 
