@@ -651,7 +651,7 @@
         call  this%ReadValues%Add(Key, Default)
     else
         ! NVCOMP verirify returns something different respect to GNU
-        !print*, "Ini_Read_Int ", trim(S), verify(trim(S),'-+0123456789')
+        print*, "Ini_Read_Int verify to fix ", trim(S), verify(trim(S),'-+0123456789')
         !if (verify(trim(S),'-+0123456789') /= 0) then
         !    status=1
         !    if (present(OK)) then
@@ -859,6 +859,7 @@
         call  this%ReadValues%Add(Key, Default)
     else
         ! NVCOMP verirify returns something different respect to GNU
+        print *, "Ini_Read_Logical verify to fix ", verify(trim(S),'10TF') 
         !if (verify(trim(S),'10TF') /= 0) then
         !    status=1
         !else
