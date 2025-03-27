@@ -63,7 +63,7 @@
     this%changed = .true.
     end subroutine TRanges_Free
 
-
+    ! FIXIT CUDA first indexof to port
     function TRanges_IndexOf(this, tau) result(pointstep)
     class(TRanges), intent(in) :: this
     double precision, intent(in) :: tau
