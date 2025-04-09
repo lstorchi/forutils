@@ -68,7 +68,17 @@
     class(TRanges), intent(in) :: this
     double precision, intent(in) :: tau
     integer :: pointstep, i
-
+    
+    !print *, "I am in TRanges_IndexOf "
+    !print *, "  npoints: ", this%npoints
+    !print *, "  tau    : ", tau 
+    !print *, "  count  : ", this%count
+    !print *, "  Hihest : ", this%Highest
+    !print *, "   1st Low        :", this%R(1)%Low
+    !print *, "   1st High       :", this%R(1)%High 
+    !print *, "   1st delta      :", this%R(1)%delta
+    !print *, "   1st start_index:", this%R(1)%start_index
+    
     pointstep=0
     do i=1, this%count
         associate(AReg => this%R(i))
