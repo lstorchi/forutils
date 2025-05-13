@@ -59,7 +59,8 @@ else
     #  nvidia-smi --query-gpu=compute_cap --format=csv
     #      # ls /opt/nvidia/hpc_sdk/Linux_x86_64/25.1/cuda/ to see cuda version
     ifeq "$(OPENACC)" "yes"
-       F90COMMONFLAGS ?= -DUSEACC -cpp -Mextend -acc=gpu -gpu=cc75,cuda12.6,deepcopy -Minfo=accel -cuda
+       #F90COMMONFLAGS ?= -DUSEACC -cpp -Mextend -acc=gpu -gpu=cc75,cuda12.6,deepcopy -Minfo=accel -cuda
+       F90COMMONFLAGS ?= -DUSEACC -cpp -Mextend -acc=gpu -gpu=deepcopy -Minfo=accel 
        ifeq "$(ACTIVEDEBUGFLAGS)" "yes"
          F90DEBUGFLAGS ?= -g -O0 -fbacktrace
          F90RELEASEFLAGS ?= -O0 -g
