@@ -61,6 +61,9 @@ else
     ifeq "$(OPENACC)" "yes"
        #F90COMMONFLAGS ?= -DUSEACC -cpp -Mextend -acc=gpu -gpu=cc75,cuda12.6,deepcopy -Minfo=accel -cuda
        F90COMMONFLAGS ?= -DUSEACC -cpp -Mextend -acc=gpu -gpu=deepcopy -Minfo=accel 
+       ifeq "$(OPENMP)" "yes"
+         F90COMMONFLAGS += -openmp
+       endif
        ifeq "$(ACTIVEDEBUGFLAGS)" "yes"
          F90DEBUGFLAGS ?= -g -O0 -fbacktrace
          F90RELEASEFLAGS ?= -O0 -g
