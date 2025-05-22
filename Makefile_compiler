@@ -1,4 +1,3 @@
-
 MAKEOPT = --no-print-directory
 
 # There are ___ kinds of F90 flags defined:
@@ -64,22 +63,12 @@ else
        ifeq "$(OPENMP)" "yes"
          F90COMMONFLAGS += -openmp
        endif
-       ifeq "$(ACTIVEDEBUGFLAGS)" "yes"
-         F90DEBUGFLAGS ?= -g -O0 -fbacktrace
-         F90RELEASEFLAGS ?= -O0 -g
-       else
 	 F90DEBUGFLAGS ?= -O3
 	 F90RELEASEFLAGS ?= -O3
-       endif
     else
        F90COMMONFLAGS ?= -cpp -Mextend -Minform=warn -Mextend
-       ifeq "$(ACTIVEDEBUGFLAGS)" "yes"
-         F90DEBUGFLAGS ?= -g -O0 -fbacktrace
-         F90RELEASEFLAGS ?= -O0 -g
-       else
 	 F90DEBUGFLAGS ?= -O3
 	 F90RELEASEFLAGS ?= -O3
-       endif
     endif
     MODLINK=-J
   else
@@ -94,9 +83,7 @@ else
     F90C ?= gfortran
     #F90COMMONFLAGS ?= -cpp -ffree-line-length-none -fmax-errors=4 -MMD -fopenmp -fPIC
     F90COMMONFLAGS ?= -cpp -ffree-line-length-none -fmax-errors=4 -MMD
-    F90DEBUGFLAGS ?= -g -O0 -fbacktrace
-    #F90RELEASEFLAGS ?= -O3 -ffast-math
-    F90RELEASEFLAGS ?= -O0 -g -fbacktrace
+    F90RELEASEFLAGS ?= -O3 -ffast-math
     MODLINK=-J
   endif
 endif
